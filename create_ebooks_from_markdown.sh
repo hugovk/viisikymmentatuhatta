@@ -19,6 +19,10 @@
 
 ###########################################
 
+# NaNoGemMo: Generate the actual book contents
+./viisikymmentatuhatta.py -f mmd > 4_main.mmd
+mkdir Publication_Ready
+
 # Find out the directory that this script is working within
 DIR=`dirname "$1"`
 
@@ -27,11 +31,8 @@ cd "$DIR"
 
 # Extract meta data from the file called '1_meta_data.mmd'
 title=`/usr/local/bin/multimarkdown 1_meta_data.mmd --extract="Title"`
-revision=`/usr/local/bin/multimarkdown 1_meta_data.mmd --extract="Revision"`
 short_title=`/usr/local/bin/multimarkdown 1_meta_data.mmd --extract="ShortTitle"`
 author=`/usr/local/bin/multimarkdown 1_meta_data.mmd --extract="Author"`
-series=`/usr/local/bin/multimarkdown 1_meta_data.mmd --extract="Series"`
-series_index=`/usr/local/bin/multimarkdown 1_meta_data.mmd --extract="SeriesIndex"`
 tags=`/usr/local/bin/multimarkdown 1_meta_data.mmd --extract="Tags"`
 cover=`/usr/local/bin/multimarkdown 1_meta_data.mmd --extract="Cover"`
 
@@ -39,11 +40,11 @@ cover=`/usr/local/bin/multimarkdown 1_meta_data.mmd --extract="Cover"`
 echo "" >> Publication_Ready/Log.txt
 echo "" >> Publication_Ready/Log.txt
 echo "" >> Publication_Ready/Log.txt
-echo `date` $revision >> Publication_Ready/Log.txt 
+echo `date` >> Publication_Ready/Log.txt
 echo "" >> Publication_Ready/Log.txt
 
 # Concatenate all the files passed to this script
-cat "$@" > $short_title.mmd 
+cat *.mmd > Publication_Ready/$short_title.mmd
 
 # LOG
 echo "" >> Publication_Ready/Log.txt
@@ -51,15 +52,8 @@ echo "" >> Publication_Ready/Log.txt
 echo ******* Compiling HTML from Multimarkdown... >> Publication_Ready/Log.txt
 
 # Run 'multimarkdown' to produce HTML, smart mode, appending result to log
-/usr/local/bin/multimarkdown $short_title.mmd --output=$short_title.html --smart >> Publication_Ready/Log.txt
-
-# LOG
-echo "" >> Publication_Ready/Log.txt
-echo "" >> Publication_Ready/Log.txt
-echo ******* Compiling MOBI… >> Publication_Ready/Log.txt
-
-# Make MOBI
-ebook-convert $short_title.html Publication_Ready/$short_title[$revision].mobi --authors="$author" --series="$series" --series-index=$series_index --title="$title" --tags="$tags" --output-profile=kindle >> Publication_Ready/Log.txt
+echo "HTML"
+/usr/local/bin/multimarkdown Publication_Ready/$short_title.mmd --output=Publication_Ready/$short_title.html --smart >> Publication_Ready/Log.txt
 
 # LOG
 echo "" >> Publication_Ready/Log.txt
@@ -67,7 +61,17 @@ echo "" >> Publication_Ready/Log.txt
 echo ******* Compiling PDF… >> Publication_Ready/Log.txt
 
 # Make PDF
-ebook-convert $short_title.html Publication_Ready/$short_title[$revision].pdf --authors="$author" --series="$series" --series-index=$series_index --title="$title" --tags="$tags" >> Publication_Ready/Log.txt
+echo "PDF"
+/Applications/calibre.app/Contents/MacOS/ebook-convert Publication_Ready/$short_title.html Publication_Ready/$short_title.pdf --authors="$author" --title="$title" --tags="$tags" --paper-size a4 --pdf-page-numbers --margin-top 72 --margin-left 72 --margin-right 72 --margin-bottom 72 --disable-font-rescaling --pdf-default-font-size 16 --pdf-header-template "_SECTION_" >> Publication_Ready/Log.txt
+
+# LOG
+echo "" >> Publication_Ready/Log.txt
+echo "" >> Publication_Ready/Log.txt
+echo ******* Compiling MOBI… >> Publication_Ready/Log.txt
+
+# Make MOBI
+echo "MOBI"
+/Applications/calibre.app/Contents/MacOS/ebook-convert Publication_Ready/$short_title.html Publication_Ready/$short_title.mobi --authors="$author" --title="$title" --tags="$tags" --output-profile=kindle >> Publication_Ready/Log.txt
 
 # LOG
 echo "" >> Publication_Ready/Log.txt
@@ -75,7 +79,8 @@ echo "" >> Publication_Ready/Log.txt
 echo ******* Compiling EPUB… >> Publication_Ready/Log.txt
 
 # Make EPUB
-ebook-convert $short_title.html Publication_Ready/$short_title[$revision].epub --remove-first-image --authors="$author" --series="$series" --series-index=$series_index --title="$title" --tags="$tags" --output-profile=ipad >> Publication_Ready/Log.txt 
+echo "EPUB"
+/Applications/calibre.app/Contents/MacOS/ebook-convert Publication_Ready/$short_title.html Publication_Ready/$short_title.epub --remove-first-image --authors="$author" --title="$title" --tags="$tags" --output-profile=ipad >> Publication_Ready/Log.txt
 
 # LOG
 echo "" >> Publication_Ready/Log.txt
@@ -83,7 +88,7 @@ echo "" >> Publication_Ready/Log.txt
 echo Cleaning up temporary files... >> Publication_Ready/Log.txt
 
 # Clean up the temporary HTML and mmd files
-rm $short_title.html $short_title.mmd >> Publication_Ready/Log.txt
+# rm $short_title.html $short_title.mmd >> Publication_Ready/Log.txt
 
 # LOG
 echo "" >> Publication_Ready/Log.txt
