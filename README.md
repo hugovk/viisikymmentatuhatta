@@ -12,11 +12,7 @@ The rules say:
 
 I'd already written a Python script, which given an integer, outputs the Finnish word for that number. It's hooked up to [@EveryFinnishNo on Twitter](https://twitter.com/EveryFinnishNo) and is happily pumping out valid Finnish words every minute which have previously never been used on the internet (or at least never indexed by Google).
 
-And given Project Gutenberg contains many classic ebooks such as *[One divided by Pi (to 1 million digits)](http://www.gutenberg.org/files/745/745.txt)*, *[The Number "e" [Natural Log] To Approximately 1 Million Places](http://www.gutenberg.org/files/127/old/ee710.txt)* and yyy (see also [these](http://www.gutenberg.org/wiki/Mathematics_(Bookshelf)#Constants_and_Numerical_Sequences) and [those](http://www.gutenberg.org/wiki/Mathematics_(Bookshelf)#Amusements.2C_Arithmetics.2C_Recreations)), the next logical step is to create a catalogue of numbers written out with Finnish words.
-
--
-Project Gutenberg's Miscellaneous Mathematical Constants, by Various
-http://www.gutenberg.org/files/634/634.txt
+And given Project Gutenberg contains many classic ebooks such as *[One divided by Pi (to 1 million digits)](http://www.gutenberg.org/files/745/745.txt)*, *[The Number "e" [Natural Log] To Approximately 1 Million Places](http://www.gutenberg.org/files/127/old/ee710.txt)* and *[Miscellaneous Mathematical Constants](http://www.gutenberg.org/files/634/634.txt)* (see also [these](http://www.gutenberg.org/wiki/Mathematics_(Bookshelf)#Constants_and_Numerical_Sequences) and [those](http://www.gutenberg.org/wiki/Mathematics_(Bookshelf)#Amusements.2C_Arithmetics.2C_Recreations)), the next logical step is to create a catalogue of numbers written out with Finnish words.
 
 Chapters
 --------
