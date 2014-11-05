@@ -40,7 +40,7 @@ Full catalogue
 
  * [PDF](Publication_Ready/50kFiNo.pdf?raw=true)
  * [TXT](Publication_Ready/50kFiNo.txt?raw=true)
- * [HTML](Publication_Ready/50kFiNo.html)
+ * [HTML](https://hugovk.github.io/viisikymmentatuhatta/Publication_Ready/50kFiNo.html)
  * [MOBI](Publication_Ready/50kFiNo.mobi?raw=true)
  * [MMD](Publication_Ready/50kFiNo.mmd?raw=true)
 
