@@ -1,0 +1,64 @@
+/*
+
+An ebook stylsheet for Writer As A Stranger
+
+Ian Hocking 2013
+
+*/
+p
+{
+	text-indent:1em;
+	margin-top:0;
+	margin-bottom:0;
+}
+
+h1, h2
+{
+	text-align:center;
+	text-indent:0;
+	margin-top:0;
+}
+
+A:link
+{
+	color:#0000ff;
+}
+
+hr {
+  margin-top: 3em;
+  border: none; 
+}
+
+h5 {
+	text-align: center;
+	height: 1em;
+}
+
+#wrapper img {
+  max-width: 100%;
+  height: auto; }
+
+blockquote p {
+  margin-top: 1em;
+  text-indent: 0;
+  font-style: italic; }
+
+blockquote+p {
+  margin: 0; 
+  text-indent: 1em;
+  }
+
+h2+p {
+  margin: 0; 
+  text-indent: 0;
+  }
+
+h3+p {
+  margin: 0; 
+  text-indent: 0;
+  }
+
+h5+p {
+  margin: 0; 
+  text-indent: 0;
+  }
